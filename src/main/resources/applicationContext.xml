@@ -38,8 +38,13 @@
         <property name="basePackage" value="com.mrding.one.mapper"/>
     </bean>
 
-    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
-       <property name="brokerURL" value="tcp://iqsz-d2229:61616"/>
+    <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.spring.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://iqsz-d2229:61616"/>
+            </bean>
+        </property>
+        <property name="maxConnections" value="2"/>
     </bean>
     <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="one.queue"/>
