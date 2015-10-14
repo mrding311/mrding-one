@@ -2,11 +2,11 @@ package com.mrding.one.service.impl;
 
 import com.mrding.one.service.IndexService;
 import com.mrding.one.mapper.IndexMapper;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 /**
  * Created by mrding on 15-8-9.

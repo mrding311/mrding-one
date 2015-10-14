@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="one" />
+        <module name="mrding-one" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="one" target="1.8" />
+      <module name="mrding-one" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
