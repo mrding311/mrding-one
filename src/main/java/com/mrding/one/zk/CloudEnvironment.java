@@ -16,12 +16,14 @@ public class CloudEnvironment {
         try {
             ZooKeeper zk = new ZooKeeper(ZK_HOST, SESSION_TIMEOUT, new Watcher() {
                 @Override
-                public void process(WatchedEvent watchedEvent) {
-                    if (watchedEvent.getPath().startsWith("/rndcloud")) {
-
+                public void process(WatchedEvent event) {
+                    if (event.getType() == Event.EventType.NodeChildrenChanged
+                            && event.getPath().equals("/rndcloud")) {
+                        System.out.println(event.getPath());
                     }
                 }
             });
+            Thread.sleep(Long.MAX_VALUE);
         } catch (Exception e) {
             e.printStackTrace();
         }
