@@ -1,32 +1,42 @@
 package com.mrding.one.zk;
 
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
+import org.apache.log4j.Logger;
+import org.apache.zookeeper.*;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by DINGSHUAI685 on 2015-10-15.
  */
-public class CloudEnvironment {
+public class CloudEnvironment implements Watcher {
 
-    private static final String ZK_HOST = "iqsz-d2229:2181";
-    private static final int SESSION_TIMEOUT = 5000;
+    private static Logger logger = Logger.getLogger(CloudEnvironment.class);
 
-    public static void main(String[] args) {
+    private ZooKeeper zk;
+
+    public void connectZk() {
         try {
-            ZooKeeper zk = new ZooKeeper(ZK_HOST, SESSION_TIMEOUT, new Watcher() {
-                @Override
-                public void process(WatchedEvent event) {
-                    if (event.getType() == Event.EventType.NodeChildrenChanged
-                            && event.getPath().equals("/rndcloud")) {
-                        System.out.println(event.getPath());
-                    }
-                }
-            });
-            Thread.sleep(Long.MAX_VALUE);
+            zk = new ZooKeeper("10.20.8.161:2181,10.20.8.126:2181,10.20.8.175:2181", 3000, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void main(String[] args) throws InterruptedException, KeeperException {
+        CloudEnvironment env = new CloudEnvironment();
+        env.connectZk();
+        env.handle();
+    }
+
+    private void handle() throws KeeperException, InterruptedException {
+        zk.exists("/esales-collect/test", true);
+        zk.exists("/esales-collect/test", true);
+        zk.exists("/esales-collect/test", true);
+        zk.exists("/esales-collect/test", true);
+    }
+
+    @Override
+    public void process(WatchedEvent event) {
+        logger.info(event.toString());
+    }
 }
