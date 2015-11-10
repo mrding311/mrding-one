@@ -11,20 +11,20 @@
     </appender>
     <!-- 文件的日志记录 -->
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${webapp.root}/logs/one.log"/>
+        <param name="File" value="/var/log/mrding-one/mrding-one.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] %t: %c - %m%n"/>
         </layout>
     </appender>
     <!-- name要对应字节码文件所在的包路径，只会记录该包路径下的代码的日志 -->
     <logger name="com.mrding.one">
-        <level value="debug,info,error"/>
+        <level value="error"/>
         <appender-ref ref="file"/>
     </logger>
 
     <!-- Root Logger -->
     <root>
-        <priority value="debug"/>
+        <priority value="error"/>
         <appender-ref ref="console"/>
     </root>
 
