@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
+    private static Logger logger = Logger.getLogger(IndexController.class);
+
     @Autowired
     private IndexService service;
 
