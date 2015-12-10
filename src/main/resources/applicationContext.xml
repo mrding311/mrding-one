@@ -44,7 +44,7 @@
                 <property name="brokerURL" value="tcp://iqsz-d2229:61616"/>
             </bean>
         </property>
-        <property name="maxConnections" value="2"/>
+        <property name="maxConnections" value="2000"/>
     </bean>
     <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="one.queue"/>
@@ -54,7 +54,7 @@
     </bean>
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="defaultDestination" ref="topic"/>
+        <property name="defaultDestination" ref="queue"/>
     </bean>
     <jms:listener-container>
         <jms:listener destination="one.queue" ref="messageReceiveTask" method="processMessage"/>
