@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="mrding-one.war">
       <element id="artifact" artifact-name="mrding-one:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/activemq-all-5.12.1.jar" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
